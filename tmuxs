@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#
+# tmuxs - is a simple script to open sessions in myultiple folders. Typically,
+# when I turn on the computer I'm always working in a couple projects, thus it
+# can be really handy.
+#
+
+for i in $*;do
+	cd $i;
+	tmux new -s $(basename $i) -n main -d;
+	cd ..;
+done
+
+if [ ! $TMUX ]; then
+	tmux attach
+fi

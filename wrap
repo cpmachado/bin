@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#
+# wrap is a devolved nohup that simply ignores everything. Many a times, for
+# GUI applications I care little about. For example, while opening a pdf in a
+# gnome machine. 'wrap evince doc1.pdf doc2.pdf'
+#
+
+$* >/dev/null 2>&1 &

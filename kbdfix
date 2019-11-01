@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# kbdfix - is a simple script to set my netbook's enter to be Return, as by
+# default it is KP-ENTER and that interferes with some applications I use.
+# Namely tmux
+#
+
+xmodmap -e "keycode 104 = Return"
+

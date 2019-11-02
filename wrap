@@ -6,15 +6,15 @@
 # gnome machine. 'wrap evince doc1.pdf doc2.pdf'
 #
 
-VERSION=1.0.0
+VERSION=1.0.1
 
 usage() {
-	echo -e "Usage: wrap command args"
-	echo -e "Wraps a command to disregard stdout and stderr"
-	echo -e "Examples:\n"
-	echo -e "wrap firefox -- Opens firefox and ignores stdout and stderr\n"
-	echo -e "Report bugs to <cpmachado@protonmail.com>"
-	echo -e "or file a issue at https://github.com/cpmachado/bin"
+	echo "Usage: wrap command args"
+	echo "Wraps a command to disregard stdout and stderr"
+	echo "Examples:\n"
+	echo "wrap firefox -- Opens firefox and ignores stdout and stderr\n"
+	echo "Report bugs to <cpmachado@protonmail.com>"
+	echo "or file a issue at https://github.com/cpmachado/bin"
 }
 
 version() {
@@ -23,25 +23,26 @@ version() {
 	echo "Written by Carlos A. Pinto Machado"
 }
 
-ARGV=$@
-ARGC=$#
 
-if [ $ARGC -eq 1 ];then
-	case $ARGV[0] in
-		--version)
-			version
-			exit
-			;;
-		*)
-			usage
-			exit
-			;;
-	esac
-fi
+case $1 in
+	--version)
+		version
+		exit
+		;;
+	--help)
+		usage
+		exit
+		;;
+	*)
+		break
+		;;
+esac
 
-if [ -z $ARGC ];then
+if [ -z $# ];then
 	usage
 	exit
 fi
 
 $* >/dev/null 2>&1 &
+
+

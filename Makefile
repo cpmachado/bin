@@ -1,6 +1,7 @@
 # Makefile for install and distribute
 
-DESTINATION_FOLDER= $(HOME)/bin
+DEST_PREFIX=$(XDG_DATA_HOME)
+HELP2MAN=help2man
 SCRIPTS=\
 	kbdfix\
 	tmuxs\
@@ -20,8 +21,13 @@ dist: clean
 	gzip bin.tar
 	$(RM) -r bin
 
-install:
+install: man
 	mkdir -p $(DESTINATION_FOLDER)
-	cp -v ${SCRIPTS} $(DESTINATION_FOLDER)
+	cp -v ${SCRIPTS} $(DEST_PREFIX)/bin
+	cp -v man/* $(DEST_PREFIX)/man
 
-.PHONY: dist install
+man:
+	$(foreach i, $(SCRIPTS),\
+		$(HELP2MAN) -N --output=./man/$i.1 --name='$i' ./$i;)
+
+.PHONY: clean dist install man

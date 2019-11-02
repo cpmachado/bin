@@ -1,9 +1,46 @@
-#!/bin/bash
+#!/usr/bin/env sh
 #
 # kbdfix - is a simple script to set my netbook's enter to be Return, as by
 # default it is KP-ENTER and that interferes with some applications I use.
 # Namely tmux
 #
+VERSION=1.0.0
+
+usage() {
+	echo "Usage: kbdfix"
+	echo -e "Sets 104 key from KP-ENTER to Return\n"
+	echo "Examples:"
+	echo -e "kbdfix -- just do it\n"
+	echo "Report bugs to <cpmachado@protonmail.com>"
+	echo "or file a issue at https://github.com/cpmachado/bin"
+}
+
+version() {
+	echo "kbdfix $VERSION"
+	echo "Copyright (C) 2019 Carlos Pinto Machado"
+	echo "Written by Carlos A. Pinto Machado"
+}
+
+ARGV=$@
+ARGC=$#
+
+if [ $ARGC -eq 1 ];then
+	case $ARGV[0] in
+		--version)
+			version
+			exit
+			;;
+		*)
+			usage
+			exit
+			;;
+	esac
+fi
+
+if [ $ARGC -gt 1 ]; then
+	usage
+	exit
+fi
 
 xmodmap -e "keycode 104 = Return"
 

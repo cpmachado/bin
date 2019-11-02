@@ -1,9 +1,47 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 #
 # wrap is a devolved nohup that simply ignores everything. Many a times, for
 # GUI applications I care little about. For example, while opening a pdf in a
 # gnome machine. 'wrap evince doc1.pdf doc2.pdf'
 #
+
+VERSION=1.0.0
+
+usage() {
+	echo -e "Usage: wrap command args"
+	echo -e "Wraps a command to disregard stdout and stderr"
+	echo -e "Examples:\n"
+	echo -e "wrap firefox -- Opens firefox and ignores stdout and stderr\n"
+	echo -e "Report bugs to <cpmachado@protonmail.com>"
+	echo -e "or file a issue at https://github.com/cpmachado/bin"
+}
+
+version() {
+	echo "wrap $VERSION"
+	echo "Copyright (C) 2019 Carlos Pinto Machado"
+	echo "Written by Carlos A. Pinto Machado"
+}
+
+ARGV=$@
+ARGC=$#
+
+if [ $ARGC -eq 1 ];then
+	case $ARGV[0] in
+		--version)
+			version
+			exit
+			;;
+		*)
+			usage
+			exit
+			;;
+	esac
+fi
+
+if [ -z $ARGC ];then
+	usage
+	exit
+fi
 
 $* >/dev/null 2>&1 &

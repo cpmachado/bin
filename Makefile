@@ -22,7 +22,7 @@ dist: clean
 	$(RM) -r bin
 
 install: man
-	mkdir -p $(DESTINATION_FOLDER)
+	mkdir -p $(DEST_PREFIX)/bin $(DEST_PREFIX)/man
 	cp -v ${SCRIPTS} $(DEST_PREFIX)/bin
 	cp -v man/* $(DEST_PREFIX)/man
 

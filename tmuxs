@@ -6,7 +6,7 @@
 # can be really handy.
 #
 
-VERSION=1.1.0
+VERSION=1.2.0
 
 usage() {
 	echo "Usage: tmuxs [DIRECTORIES]"
@@ -39,11 +39,11 @@ case $1 in
 esac
 
 for i in $*;do
-	cd $i;
+	pushd $i;
 	tmux new -s $(basename $(pwd)) -n main -d;
-	cd ..;
+	popd;
 done
 
 if [ ! $TMUX ]; then
-	tmux attach
+	tmux attach;
 fi

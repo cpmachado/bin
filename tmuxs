@@ -38,10 +38,12 @@ case $1 in
 		;;
 esac
 
+BASE=$(pwd)
+
 for i in $*;do
-	pushd $i;
+	cd $i;
 	tmux new -s $(basename $(pwd)) -n main -d;
-	popd;
+	cd $BASE;
 done
 
 if [ ! $TMUX ]; then

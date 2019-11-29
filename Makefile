@@ -6,6 +6,7 @@ HELP2MAN=help2man
 SCRIPTS=\
 	kbdfix\
 	tmuxs\
+	upub\
 	wrap
 
 FILES= $(SCRIPTS)\

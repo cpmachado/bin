@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+
+#
+# upub is a simple script to clean metadata, update it, upgrade the system and
+# remove unused packages
+#
+
+VERSION=1.0.0
+
+usage() {
+	echo "Usage: upub"
+	echo "Cleans and updates metadata of apt."
+	echo "Upgrades packages and and removes unused packages."
+	echo "Examples:\n"
+	echo "upub -- Runs the command\n"
+	echo "Report bugs to <cpmachado@protonmail.com>"
+	echo "or file a issue at https://github.com/cpmachado/bin"
+}
+
+version() {
+	echo "upub $VERSION"
+	echo "Copyright (C) 2019 Carlos Pinto Machado"
+	echo "Written by Carlos A. Pinto Machado"
+}
+
+
+case $1 in
+	--version)
+		version
+		exit
+		;;
+	--help)
+		usage
+		exit
+		;;
+	*)
+		break
+		;;
+esac
+
+sudo apt clean all
+sudo apt update
+sudo apt upgrade -y
+sudo apt autoremove -y
+
+
+

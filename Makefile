@@ -1,8 +1,7 @@
 # Makefile for install and distribute
 
 PRIVATE_BIN=$(HOME)/.local/bin
-DEST_PREFIX=$(XDG_DATA_HOME)
-HELP2MAN=help2man
+DEST_PREFIX=$(HOME)/.local/share
 SCRIPTS=\
 	kbdfix\
 	tmuxs\
@@ -30,7 +29,6 @@ install: man
 
 man:
 	$(foreach i, $(SCRIPTS),\
-		$(HELP2MAN) -N --output=./man/$i.1 --name='$i' ./$i;\
 		gzip -k -f ./man/$i.1;)
 
 .PHONY: clean dist install man
